@@ -64,17 +64,27 @@ variable "vpc_cidr_block" {
   default = "10.0.0.0/16"
 }
 
+// availability zones must be defined as lower case
 variable "availability_zones" {
   type    = list(string)
-  default = ["A", "B", "C"]
+  default = ["a", "b", "c"]
 }
 
 resource "random_string" "random" {
-  length           = 6
-  special          = true
-  override_special = "/@£$"
+  length  = 4
+  special = false
+  upper   = false
 }
 
 locals {
-  full_cluster_name = "trim(${var.cluster_name}, -)-${random_string.random.result}"
+  full_cluster_name = "${trim(var.cluster_name, "-")}-${random_string.random.result}"
+}
+
+variable "openshift_version" {
+  type    = string
+  default = "4.2"
+}
+
+variable "base_domain" {
+  type = string
 }

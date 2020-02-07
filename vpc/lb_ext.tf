@@ -1,5 +1,5 @@
 resource "aws_lb" "external_api" {
-  name                             = "${var.cluster_name}-external-api-lb"
+  name                             = "${var.cluster_name}-ext-api-lb"
   internal                         = false
   load_balancer_type               = "network"
   subnets                          = values(aws_subnet.public)[*].id
@@ -14,7 +14,7 @@ resource "aws_lb" "external_api" {
 }
 
 resource "aws_lb_target_group" "external_api" {
-  name     = "${var.cluster_name}-external-api-lb-tg"
+  name     = "${var.cluster_name}-ext-tg"
   port     = "6443"
   protocol = "TCP"
   vpc_id   = aws_vpc.vpc.id

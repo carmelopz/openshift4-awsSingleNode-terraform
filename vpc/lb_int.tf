@@ -1,5 +1,5 @@
 resource "aws_lb" "internal_api" {
-  name                             = "${var.cluster_name}-internal-api-lb"
+  name                             = "${var.cluster_name}-int-api-lb"
   internal                         = true
   load_balancer_type               = "network"
   subnets                          = values(aws_subnet.private)[*].id
@@ -14,7 +14,7 @@ resource "aws_lb" "internal_api" {
 }
 
 resource "aws_lb_target_group" "internal_api" {
-  name     = "${var.cluster_name}-internal-api-lb-tg"
+  name     = "${var.cluster_name}-int-tg"
   port     = "6443"
   protocol = "TCP"
   vpc_id   = aws_vpc.vpc.id
@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "internal_api" {
 }
 
 resource "aws_lb_target_group" "internal_services" {
-  name     = "${var.cluster_name}-internal-services-lb-tg"
+  name     = "${var.cluster_name}-intsvc-tg"
   port     = "22623"
   protocol = "TCP"
   vpc_id   = aws_vpc.vpc.id

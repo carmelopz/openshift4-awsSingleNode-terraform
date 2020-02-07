@@ -25,7 +25,7 @@ resource "aws_security_group_rule" "controlPlane_ingress_services" {
   from_port         = "22623"
   to_port           = "22623"
   protocol          = "TCP"
-  cidr_blocks       = aws_vpc.vpc.cidr_block
+  cidr_blocks       = [aws_vpc.vpc.cidr_block]
   security_group_id = aws_security_group.controlPlane_sg.id
 }
 
@@ -34,7 +34,7 @@ resource "aws_security_group_rule" "controlPlane_ingress_api" {
   from_port         = "6443"
   to_port           = "6443"
   protocol          = "TCP"
-  cidr_blocks       = aws_vpc.vpc.cidr_block
+  cidr_blocks       = [aws_vpc.vpc.cidr_block]
   security_group_id = aws_security_group.controlPlane_sg.id
 }
 
@@ -43,7 +43,7 @@ resource "aws_security_group_rule" "controlPlane_ingress_ssh_worker" {
   from_port         = "22"
   to_port           = "22"
   protocol          = "TCP"
-  cidr_blocks       = aws_vpc.vpc.cidr_block
+  cidr_blocks       = [aws_vpc.vpc.cidr_block]
   security_group_id = aws_security_group.controlPlane_sg.id
 }
 

@@ -23,3 +23,7 @@ variable "private_subnets" {
   type    = number
   default = null
 }
+
+variable "region" {
+  type = string
+}
