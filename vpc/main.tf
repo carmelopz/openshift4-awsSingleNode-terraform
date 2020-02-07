@@ -1,7 +1,7 @@
 locals {
   private_cidr_range = cidrsubnet(aws_vpc.vpc.cidr_block, 1, 1)
   public_cidr_range  = cidrsubnet(aws_vpc.vpc.cidr_block, 1, 0)
-  az_set = toset(var.availability_zones)
+  az_set             = toset(var.availability_zones)
 }
 
 resource "aws_vpc" "vpc" {
